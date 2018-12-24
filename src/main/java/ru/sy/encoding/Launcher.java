@@ -39,6 +39,9 @@ public class Launcher {
             }
             logger.log("└───────────┘");
             logger.log("Message: " + Arrays.toString(encodingResult.getEncodedMessage()));
+            if (encodingResult.getMessageFromEncoding() != null) {
+                logger.log("Message from encoder: %s" + encodingResult.getMessageFromEncoding());
+            }
         }
     }
 

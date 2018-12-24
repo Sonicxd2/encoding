@@ -7,9 +7,9 @@ import java.io.File;
 
 public class PictureMessageGenerator implements MessageGenerator {
 
-    public static int toNormalRGB(int rgb) {
+    public static int normalize(int rgb) {
         Color color = new Color(rgb);
-        return color.getRed() + color.getBlue() + color.getGreen();
+        return color.getRed();
     }
 
     public static int quantization(int val) {
@@ -23,7 +23,7 @@ public class PictureMessageGenerator implements MessageGenerator {
         int line = image.getHeight() / 2;
         int[] message = new int[image.getWidth()];
         for (int i = 0; i < image.getWidth(); i++) {
-            message[i] = quantization(toNormalRGB(image.getRGB(i, line)));
+            message[i] = quantization(normalize(image.getRGB(i, line)));
         }
         return message;
     }

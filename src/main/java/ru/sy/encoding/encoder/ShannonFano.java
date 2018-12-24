@@ -73,11 +73,16 @@ public class ShannonFano {
     private void compressString() {
         List<Character> charList = new ArrayList<Character>();
 
-        Iterator<Entry<Character, Double>> entries = characterFrequency.entrySet().iterator();
-        while (entries.hasNext()) {
-            Entry<Character, Double> entry = entries.next();
-            charList.add(entry.getKey());
-        }
+        characterFrequency.entrySet().stream()
+                .sorted((entry1, entry2) -> (int) (entry2.getValue() - entry1.getValue()))
+                .forEach((entry) -> {
+                    charList.add(entry.getKey());
+                });
+//        Iterator<Entry<Character, Double>> entries = characterFrequency.entrySet().iterator();
+//        while (entries.hasNext()) {
+//            Entry<Character, Double> entry = entries.next();
+//            charList.add(entry.getKey());
+//        }
 
         appendBit(compressedResult, charList, true);
     }

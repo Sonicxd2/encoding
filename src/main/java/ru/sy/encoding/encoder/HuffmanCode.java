@@ -25,6 +25,11 @@ class HuffmanLeaf extends HuffmanTree {
         super(freq);
         value = val;
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
 }
 
 class HuffmanNode extends HuffmanTree {
@@ -34,6 +39,11 @@ class HuffmanNode extends HuffmanTree {
         super(l.frequency + r.frequency);
         left = l;
         right = r;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%s, %s)", left.toString(), right.toString());
     }
 }
 
@@ -50,6 +60,7 @@ public class HuffmanCode {
     private double averageLengthBefore;
     private double averageLengthAfter;
     private boolean probabilityIsGiven;
+    private StringBuilder treeBuildLog = new StringBuilder();
 
     public HuffmanCode(String str) {
         super();
@@ -94,6 +105,8 @@ public class HuffmanCode {
         huffmanTrees = new PriorityQueue<HuffmanTree>();
         probabilityIsGiven = true;
 
+        treeBuildLog.append("Tree builder:\n");
+
         this.buildTree();
         this.buildString(mainTree, new StringBuffer(), compressedResult);
         this.calculateEntropy();
@@ -106,14 +119,15 @@ public class HuffmanCode {
             huffmanTrees.offer(new HuffmanLeaf(characterFrequency.get(c), c));
         }
 
-        assert huffmanTrees.size() >= 1; // Invariant, make sure there is at
-        // least one tree exist
+        assert huffmanTrees.size() >= 1;
 
         while (huffmanTrees.size() >= 2) {
             HuffmanTree a = huffmanTrees.poll();
             HuffmanTree b = huffmanTrees.poll();
 
-            huffmanTrees.offer(new HuffmanNode(a, b));
+            HuffmanNode node = new HuffmanNode(a, b);
+            treeBuildLog.append(node.toString()).append('\n');
+            huffmanTrees.offer(node);
         }
         mainTree = huffmanTrees.poll();
     }
@@ -184,28 +198,13 @@ public class HuffmanCode {
 
     @Override
     public String toString() {
-        String str = "";
-        str += "*** Probability is" + (probabilityIsGiven ? " " : " Not ") + "Given. "
-                + (probabilityIsGiven ? "We did not calculate the probability."
-                : "Probability was calculated using frequency of each character in the given String.")
-                + "\n";
-        str += "Original String: \"" + originalString + "\"\n";
-        str += "------------------------------------------------------------------------\n";
-        str += "Symbol\t\tFrequency\tProbability\tHuffman Code\tASCII Code\n";
-        str += "------------------------------------------------------------------------\n";
-
-        for (Character c : compressedResult.keySet()) {
-            str += "'" + c + "'" + "\t\t" + Math.round(characterFrequency.get(c) * 100.0) / 100.0 + "\t\t"
-                    + Math.round(characterFrequency.get(c) / originalStringLength * 10000.0) / 10000.0 + "\t\t"
-                    + compressedResult.get(c) + "\t\t" + Integer.toBinaryString((int) c);
-            str += "\n";
-        }
-        str += "------------------------------------------------------------------------\n";
-        str += "Efficiency before Compression: " + 100 * (Math.round((entropy / averageLengthBefore) * 100.0) / 100.0)
-                + "%\n";
-        str += "Efficiency after Compression: " + 100 * (Math.round((entropy / averageLengthAfter) * 100.0) / 100.0)
-                + "%\n";
-        str += "------------------------------------------------------------------------\n";
-        return str;
+        StringBuilder str = new StringBuilder();
+        str.append("------------------------------------------------------------------------\n");
+        str.append("Efficiency before Compression: ").append(100 * (Math.round((entropy / averageLengthBefore) * 100.0) / 100.0)).append("%\n");
+        str.append("Efficiency after Compression: " + 100 * (Math.round((entropy / averageLengthAfter) * 100.0) / 100.0)
+                + "%\n");
+        str.append("------------------------------------------------------------------------\n");
+        str.append(treeBuildLog);
+        return str.toString();
     }
 }

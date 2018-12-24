@@ -14,8 +14,8 @@ public class HuffmanEncoder implements Encoder {
 
     @Override
     public EncodingResult encode(int[] message) {
-        HuffmanCode fano = new HuffmanCode(generateString(message));
-        Map<Character, String> preDictionary = fano.getCompressedResult();
+        HuffmanCode huffmanCode = new HuffmanCode(generateString(message));
+        Map<Character, String> preDictionary = huffmanCode.getCompressedResult();
         Map<Integer, String> dictionary = new HashMap<>();
         preDictionary.entrySet().stream().forEach((entry) -> {
             dictionary.put(Integer.valueOf(entry.getKey()), entry.getValue());
@@ -24,6 +24,6 @@ public class HuffmanEncoder implements Encoder {
         for (int i = 0; i < message.length; i++) {
             encoded[i] = dictionary.get(message[i]);
         }
-        return new EncodingResult(dictionary, encoded);
+        return new EncodingResult(dictionary, encoded, huffmanCode.toString());
     }
 }

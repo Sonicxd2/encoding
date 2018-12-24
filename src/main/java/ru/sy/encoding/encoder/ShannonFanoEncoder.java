@@ -24,6 +24,6 @@ public class ShannonFanoEncoder implements Encoder {
         for (int i = 0; i < message.length; i++) {
             encoded[i] = dictionary.get(message[i]);
         }
-        return new EncodingResult(dictionary, encoded);
+        return new EncodingResult(dictionary, encoded, fano.toString());
     }
 }

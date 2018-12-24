@@ -1,0 +1,17 @@
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/encoder/ShannonFanoEncoder.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/logger/Logger.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/logger/FileLogger.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/logger/ConsoleLogger.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/logger/DelegateLogger.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/utils/SupplierWithException.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/Launcher.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/PictureMessageGenerator.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/frequency/HashMapFrequencyCalculator.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/encoder/ShannonFano.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/frequency/FrequencyCalculator.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/MessageGenerator.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/encoder/Encoder.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/encoder/HuffmanCode.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/encoder/EncodingResult.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/encoder/UniformEncoder.java
+/home/yaroslav/IdeaProjects/encoding/src/main/java/ru/sy/encoding/encoder/HuffmanEncoder.java
